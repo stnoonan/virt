@@ -18,9 +18,6 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Simplied interface to use ruby the libvirt ruby library}
   gem.email = "ohadlevy@gmail.com"
   gem.authors = ["Ohad Levy"]
-
-  #gem.add_runtime_dependency 'libvirt', '> 0.2.0'
-  #gem.add_development_dependency 'rspec', '> 1.2.3'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -31,17 +28,10 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
 task :default => :test
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
