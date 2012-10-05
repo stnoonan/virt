@@ -13,6 +13,7 @@ module Virt
       @memory ||= options[:memory] || default_memory_size
       @vcpu   ||= options[:vcpu]   || default_vcpu_count
       @arch   ||= options[:arch]   || default_arch
+      @uuid = options[:uuid] if new?
 
       @template_path = options[:template_path] || default_template_path
     end
@@ -74,7 +75,12 @@ module Virt
     end
 
     def uuid
-      @domain.uuid unless new?
+      if new?
+        @uuid
+      else
+        @uuid = @domain.uuid
+        @domain.uuid
+      end
     end
 
     def to_s
