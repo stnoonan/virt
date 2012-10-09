@@ -3,7 +3,12 @@ module Virt::KVM
 
     def initialize options = {}
       super(options)
-      @volume        = Volume.new options
+      volume_options = options.reject{|k| k == :template_path}
+      if (vol_tp = volume_options[:volume_template_path])
+        volume_options[:template_path] = vol_tp
+      end
+
+      @volume        = Volume.new volume_options
       @interface   ||= Interface.new options
     end
 
@@ -15,7 +20,7 @@ module Virt::KVM
     protected
 
     def default_template_path
-      "kvm/guest.xml.erb"
+      "#{base_template_path}/kvm/guest.xml.erb"
     end
 
   end

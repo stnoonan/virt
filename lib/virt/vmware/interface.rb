@@ -4,7 +4,7 @@ module Virt::VMWare
     protected
 
     def default_template_path
-      "vmware/guest.xml.erb"
+      "#{base_template_path}/vmware/guest.xml.erb"
     end
 
     def default_device

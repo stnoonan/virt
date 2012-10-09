@@ -14,10 +14,16 @@ module Virt
 
     private
     # template file that contain our xml template
-    def template
-      File.read("#{File.dirname(__FILE__)}/../../templates/#{template_path}")
-    rescue => e
-      warn "failed to read template #{template_path}: #{e}"
+    def template(opts={})
+      begin
+        File.read(template_path)
+      rescue => e
+        warn "failed to read template #{template_path}: #{e}"
+      end
+    end
+
+    def base_template_path
+      "#{File.dirname(__FILE__)}/../../templates/"
     end
 
     # finds a value from xml

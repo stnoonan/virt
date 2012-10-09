@@ -6,7 +6,7 @@ module Virt::KVM
     end
 
     def default_template_path
-      "kvm/volume.xml.erb"
+      "#{base_template_path}/kvm/volume.xml.erb"
     end
 
     def path

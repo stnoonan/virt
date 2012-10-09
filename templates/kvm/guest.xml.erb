@@ -8,10 +8,10 @@
   <vcpu><%= vcpu %></vcpu>
   <os>
     <type arch='<%= arch %>'>hvm</type>
-    <boot dev='network'/>
     <%- if volume -%>
     <boot dev='hd'/>
     <%- end -%>
+    <boot dev='network'/>
   </os>
   <features>
     <acpi/>
@@ -44,6 +44,9 @@
     </serial>
     <console type='pty'>
       <target port='0'/>
+    </console>
+    <console type='pty'>
+      <target type='serial' port='0'/>
     </console>
     <input type='mouse' bus='ps2'/>
     <graphics type='vnc' port='-1' autoport='yes'/>

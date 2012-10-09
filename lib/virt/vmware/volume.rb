@@ -6,7 +6,7 @@ module Virt::VMWare
     end
 
     def default_template_path
-      "vmware/volume.xml.erb"
+      "#{base_template_path}/vmware/volume.xml.erb"
     end
 
     def path
